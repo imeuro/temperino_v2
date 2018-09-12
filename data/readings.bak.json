@@ -1,0 +1,15 @@
+{
+	"inside" : {
+		"temp" : 15.45,
+		"humi" : 68
+	},
+	"outside" : {
+		"temp" : 26.45,
+		"humi" : 73,
+		"press" : 998
+	},
+	"program" : {
+		"mode" : "OFF",
+		"temp" : 17.5
+	}
+}
