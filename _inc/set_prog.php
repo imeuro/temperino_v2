@@ -1,4 +1,6 @@
 <h2>Program mode:</h2>
+<time id="manual_time_val"></time>
+
 <div class="modebuttons-container program-mode small">
 	<button class="heat-mode" data-program="T3">T3 / MANUAL</button>
 	<button class="heat-mode" data-program="T2">T2 / MANUAL</button>
@@ -29,6 +31,7 @@ jQuery(document).ready(function() {
 		jQuery('button[data-program]').removeClass('on');
 		jQuery('button[data-program="'+readings.program.mode+'"]').addClass('on');
 		jQuery('#manual-mode-value').text(readings.program.temp);
+		jQuery('#manual_time_val').text(readings.program.timestamp);
   });
 
 	jQuery('.heat-mode').on( "click", function() {
@@ -43,7 +46,8 @@ jQuery(document).ready(function() {
 		}
 
 		jQuery.ajax({
-		  method: "POST",
+		  // method: "POST",
+		  method: "GET",
 		  url: "https://nas.imeuro.io/temperino_v2/data/savedata.php",
 		  data: { program: { mode: whatprog, temp: whattemp } }
 		}).done(function( msg ) {
