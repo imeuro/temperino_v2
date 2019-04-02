@@ -19,7 +19,7 @@
 jQuery(document).ready(function() {
 
 	// read current status and set it on UI:
-	jQuery.getJSON('http://192.168.1.110/pizero-weather/logs/home_readings.json', function(readings) {
+	jQuery.getJSON('https://192.168.1.110/pizero-weather/logs/home_readings.json', function(readings) {
 		readings.inside.temp = Math.round( readings.inside.temp * 10) / 10
 		jQuery('#in_time_val').text(readings.inside.time);
 		jQuery('#in_temp_val').text(readings.inside.temp);

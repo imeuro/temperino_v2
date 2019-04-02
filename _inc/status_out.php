@@ -18,7 +18,7 @@
 <script>
 	jQuery(document).ready(function() {
 	// read current status and set it on UI:
-	jQuery.getJSON('http://192.168.1.110/pizero-weather/logs/home_readings.json', function(readings) {
+	jQuery.getJSON('https://192.168.1.110/pizero-weather/logs/home_readings.json', function(readings) {
 		readings.outside.temp = Math.round( readings.outside.temp * 10) / 10
 		jQuery('#out_time_val').text(readings.outside.time);
 		jQuery('#out_temp_val').text(readings.outside.temp);
