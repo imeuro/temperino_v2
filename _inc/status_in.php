@@ -1,4 +1,5 @@
 <h2>Status: inside</h2>
+<time id="in_time_val"></time>
 
 <div class="gauge-container temp-gauge">
 	<canvas width="270" height="250" id="in_TEMPERATURE" class="gauge"></canvas>
@@ -20,6 +21,7 @@ jQuery(document).ready(function() {
 	// read current status and set it on UI:
 	jQuery.getJSON('https://nas.imeuro.io/temperino_v2/data/readings.json', function(readings) {
 		readings.inside.temp = Math.round( readings.inside.temp * 10) / 10
+		jQuery('#in_time_val').text(readings.inside.timestamp);
 		jQuery('#in_temp_val').text(readings.inside.temp);
 		jQuery('#in_humi_val').text(readings.inside.humi);
 		jQuery('#program_mode').text(readings.program.mode);

@@ -2,14 +2,16 @@
 // gets data from sensors outside, inside or buttons,
 // modifies accordingly readings.json
 
-if ($_POST['program']) { $prog = $_POST['program']; }
+$read_inside = "";
+$read_outside = "";
+$prog = "";
 
-if ($_GET['temp_out']) { $read_outside['temp_out'] = $_GET['temp_out']; }
-// if ($_GET['humi_out']) { $read_outside['humi_out'] = $_GET['humi_out']; }
-if ($_GET['baro_out']) { $read_outside['baro_out'] = $_GET['baro_out']; }
-
-if ($_GET['temp_in']) { $read_inside['temp_in'] = $_GET['temp_in']; }
-if ($_GET['humi_in']) { $read_inside['humi_in'] = $_GET['humi_in']; }
+if ( isset($_GET['program']) ) { $prog = $_GET['program']; }
+if ( isset($_GET['temp_out']) ) { $read_outside['temp_out'] = $_GET['temp_out']; }
+// if ( isset($_GET['humi_out']) ) { $read_outside['humi_out'] = $_GET['humi_out']; }
+if ( isset($_GET['baro_out']) ) { $read_outside['baro_out'] = $_GET['baro_out']; }
+if ( isset($_GET['temp_in']) ) { $read_inside['temp_in'] = $_GET['temp_in']; }
+if ( isset($_GET['humi_in']) ) { $read_inside['humi_in'] = $_GET['humi_in']; }
 
 // var_dump($prog);
 // var_dump($read_outside);
@@ -27,12 +29,12 @@ if ($read_outside || $read_inside || $prog) {
 		$data['outside']['temp'] = round($read_outside['temp_out'],1);
 		// $data['outside']['humi'] = round($read_outside['humi_out'],1);
 		$data['outside']['press'] = round($read_outside['baro_out'],1);
-		$data['outside']['timestamp'] =  date('H:i');
+		$data['outside']['timestamp'] =  date('d M y - H:i');
 	}
 	if ($read_inside) {
 		$data['inside']['temp'] = round($read_inside['temp_in'],1);
 		$data['inside']['humi'] = round($read_inside['humi_in'],1);
-		$data['inside']['timestamp'] =  date('H:i');
+		$data['inside']['timestamp'] =  date('d M y - H:i');
 	}
 	if ($prog) {
 		if ($prog['temp'] != "-") {
@@ -41,7 +43,7 @@ if ($read_outside || $read_inside || $prog) {
 		} else {
 			$data['program']['mode'] = $prog['mode'];
 		}
-		$data['program']['timestamp'] =  date('H:i');
+		$data['program']['timestamp'] =  date('d M y - H:i');
 	}
 
 	// write new data to json

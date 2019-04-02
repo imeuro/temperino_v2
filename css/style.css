@@ -296,6 +296,13 @@ main.menu-open {
 	text-rendering: optimizeLegibility;
 	width: 100%;
 }
+.swiper-slide time {
+    position: absolute;
+    right: 0;
+    margin: 10px 30px 0 0;
+    font-size: 11px;
+    color: #7a7a7b;
+}
 .swiper-slide p {
 	margin: 0 0 10px 0;
 	font-size: 16px;

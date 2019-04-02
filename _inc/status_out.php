@@ -1,4 +1,5 @@
 <h2>Status: outside</h2>
+<time id="out_time_val"></time>
 
 <div class="gauge-container temp-gauge">
 	<canvas width="270" height="225" id="out_TEMPERATURE" class="gauge"></canvas>
@@ -19,6 +20,7 @@
 	// read current status and set it on UI:
 	jQuery.getJSON('https://nas.imeuro.io/temperino_v2/data/readings.json', function(readings) {
 		readings.outside.temp = Math.round( readings.outside.temp * 10) / 10
+		jQuery('#out_time_val').text(readings.outside.timestamp);
 		jQuery('#out_temp_val').text(readings.outside.temp);
 		jQuery('#out_humi_val').text(readings.outside.humi);
 		jQuery('#out_press_val').text(readings.outside.press);
