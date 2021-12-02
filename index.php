@@ -35,7 +35,7 @@
 		<nav id="main-menu">
 			<ul>
 				<li><a href="#slide1" class="current">Status (inside)</a></li>
-				<li><a href="#slide2">Status (outside)</a></li>
+				<!-- <li><a href="#slide2">Status (outside)</a></li> -->
 				<li><a href="#slide3">Set Program</a></li>
 				<li><a href="#slide4">Info</a></li>
 			</ul>
@@ -49,7 +49,7 @@
 			    <div class="swiper-wrapper">
 			        <!-- Slides -->
 			        <div class="swiper-slide" data-hash="slide1" data-content="status_in"></div>
-			        <div class="swiper-slide" data-hash="slide2" data-content="status_out"></div>
+			        <!-- <div class="swiper-slide" data-hash="slide2" data-content="status_out"></div> -->
 			        <div class="swiper-slide" data-hash="slide3" data-content="set_prog"></div>
 			        <div class="swiper-slide" data-hash="slide4" data-content="sys_info"></div>
 			    </div>
@@ -72,6 +72,7 @@
 	</div>
   <!-- Uncomment the line below when ready to test with fake data -->
 	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
 	<script src="js/swiper.min.js" async></script>
 	<script src="js/gauge.min.js" async></script>
   <script src="js/app.js" async></script>

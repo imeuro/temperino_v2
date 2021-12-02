@@ -1,3 +1,20 @@
+<?php
+$server   = 'meuro.dev';
+$port     = 1883;
+$clientId = 'temperino_v2';
+
+$mqtt = new PhpMqtt\Client\MqttClient($server, $port, $clientId);
+$mqtt->connect();
+$mqtt->subscribe('brtt6/thermo', function ($topic, $message) {
+    echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
+}, 0);
+$mqtt->loop(true);
+$mqtt->disconnect();
+
+
+?>
+
+
 <h2>Status: inside</h2>
 <time id="in_time_val"></time>
 
@@ -17,7 +34,6 @@
 
 <script>
 jQuery(document).ready(function() {
-
 	// read current status and set it on UI:
 	jQuery.getJSON('https://nas.imeuro.io/temperino_v2/data/readings.json', function(readings) {
 		readings.inside.temp = Math.round( readings.inside.temp * 10) / 10
