@@ -1,17 +1,35 @@
 <?php
-$server   = 'meuro.dev';
-$port     = 1883;
-$clientId = 'temperino_v2';
+$mqtt_data[] = '';
 
-$mqtt = new PhpMqtt\Client\MqttClient($server, $port, $clientId);
-$mqtt->connect();
+require __DIR__ . '/vendor/autoload.php';
+$server   = "meuro.dev";
+$port     = 1883;
+$clientId = 'temperino';
+
+$mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
+$connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
+    ->setConnectTimeout(10)
+    ->setSocketTimeout(10)
+    ->setUseTls(false)
+    ->setKeepAliveInterval(10);
+$mqtt->connect($connectionSettings, true);
+$mqtt->subscribe('brtt6/temp', function ($topic, $message) {
+    echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
+    $mqtt_data['temp'] = $message;
+},1);
 $mqtt->subscribe('brtt6/thermo', function ($topic, $message) {
     echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
-}, 0);
-$mqtt->loop(true);
+    $mqtt_data['thermo'] = $message;
+},1);
+
+print_r($mqtt_data);
+
+
+$mqtt->loop();
+//$mqtt->interrupt();
 $mqtt->disconnect();
 
-
+print_r($mqtt_data);
 ?>
 
 
