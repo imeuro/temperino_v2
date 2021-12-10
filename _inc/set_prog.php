@@ -61,7 +61,7 @@ jQuery(document).ready(function() {
 		jQuery.ajax({
 		  // method: "POST",
 		  method: 'GET',
-		  url: './_inc/mqtt_sender.php?thermo={ "set_prog": "'+whatprog+'", "set_temp": '+whattemp+' }'
+		  url: './_inc/mqtt_sender.php?thermo={"set_prog":"'+whatprog+'", "set_temp":'+whattemp+'}'
 		}).done(function( msg ) {
 			printNotice('Program '+whatprog+' set.');
 		}).fail(function( msg ) {
