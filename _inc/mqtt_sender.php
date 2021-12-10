@@ -1,6 +1,12 @@
 <?php
-$dataset = json_decode($_GET['thermo']);
+$dataset = $_GET['thermo'];
+// print_r($dataset);
+$jdataset=json_decode($dataset,true);
+$jdataset["last_mod"] = date("d-m-Y H:i");
+// print_r($jdataset);
+$dataset = json_encode($jdataset);
 print_r($dataset);
+
 if ($dataset) {
 
 	$client = new Mosquitto\Client();
