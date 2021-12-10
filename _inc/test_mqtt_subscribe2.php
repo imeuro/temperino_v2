@@ -13,6 +13,7 @@ $client->onConnect(function($code, $message) use ($client) {
 $client->onMessage(function($message) {
     /* Display the message's topic and payload */
     echo $message->topic, "\n", $message->payload, "\n\n";
+    $client->exitLoop();
 });
 
 /* Connect, supplying the host and port. */
