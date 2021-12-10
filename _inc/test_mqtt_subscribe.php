@@ -20,8 +20,11 @@ $client->onMessage(function($message) {
     </div>
 <?php
     $client->exitLoop();
+    die();
 });
 /* Connect, supplying the host and port. */
 $client->connect('meuro.dev', 1883);
 /* Enter the event loop */
 $client->loopForever();
+?>
+
