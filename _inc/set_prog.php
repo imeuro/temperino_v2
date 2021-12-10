@@ -24,9 +24,9 @@ function message($message) {
 <time id="manual_time_val"><?php echo $mqtt_thermo['last_mod'] ?></time>
 
 <div class="modebuttons-container program-mode small">
-	<button class="heat-mode" data-program="T2">T2 (°C)</button>
-	<button class="heat-mode" data-program="T1">T1 (°C)</button>
-	<button class="heat-mode on" data-program="AUTO">AUTO</button>
+	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'T2' ? 'on' : ''; ?>" data-program="T2">T2 (20°C)</button>
+	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'T1' ? 'on' : ''; ?>" data-program="T1">T1 (17°C)</button>
+	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'auto' ? 'on' : ''; ?>" data-program="AUTO">AUTO</button>
 </div>
 
 
@@ -36,7 +36,7 @@ function message($message) {
 	<h3 id="manual-mode-value" class="manual-adjust-value"><?php echo $mqtt_thermo['set_temp'] ?></h3>
 	<button class="manual-adjust manual-adjust-up">+</button>
 	<div class="modebuttons-container program-mode small">
-		<button id="manual-mode-set" class="heat-mode heat-mode-manual-set" data-program="MANUAL">SET TEMP</button>
+		<button id="manual-mode-set" class="heat-mode heat-mode-manual-set <?php echo $mqtt_thermo['set_prog'] == 'MAN' ? 'on' : ''; ?>" data-program="MANUAL">SET TEMP</button>
 	</div>
 </div>
 

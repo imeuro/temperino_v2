@@ -21,7 +21,7 @@ function message($message) {
     //printf("Got a message on topic %s with payload:\n%s\n", $message->topic, $message->payload);
     $mqtt_temp = json_decode($message->payload, true);
 ?>
-    <time id="in_time_val"><?php echo $mqtt_temp['temp_last_mod'] ?></time>
+    <time id="in_time_val"><?php echo $mqtt_temp['last_mod'] ?></time>
     <div class="gauge-container temp-gauge">
         <canvas width="270" height="250" id="in_TEMPERATURE" class="gauge"></canvas>
         <span id="in_temp_val" data-type="Temperature" data-scale="°C"><?php echo $mqtt_temp['cur_temp'] ?></span>
