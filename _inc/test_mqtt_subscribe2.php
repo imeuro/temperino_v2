@@ -1,11 +1,12 @@
 <?php
-
+$mqtt_data=[];
 /* Construct a new client instance, passing a client ID of “MyClient” */
 $client = new Mosquitto\Client('MyClient');
 
 /* Set the callback fired when the connection is complete */
 $client->onConnect(function($code, $message) use ($client) {
     /* Subscribe to the broker's $SYS namespace, which shows debugging info */
+    $client->subscribe('brtt6/temp', 1);
     $client->subscribe('brtt6/thermo', 1);
 });
 
@@ -13,6 +14,7 @@ $client->onConnect(function($code, $message) use ($client) {
 $client->onMessage(function($message) {
     /* Display the message's topic and payload */
     echo $message->topic, "\n", $message->payload, "\n\n";
+    $mqtt_data[$message->topic] = json_decode($message->payload, true);
     $client->exitLoop();
 });
 
@@ -22,3 +24,4 @@ $client->connect('meuro.dev', 1883);
 
 /* Enter the event loop */
 $client->loopForever();
+
