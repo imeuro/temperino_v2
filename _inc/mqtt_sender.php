@@ -7,8 +7,8 @@ $jdataset["last_mod"] = date("d-m-Y H:i");
 $dataset = json_encode($jdataset);
 print_r($dataset);
 
-if ($dataset) {
-
+if (!empty($dataset)) {
+  echo 'puppa!';
 	$client = new Mosquitto\Client();
 	$client->onConnect('connect');
 	$client->onDisconnect('disconnect');
