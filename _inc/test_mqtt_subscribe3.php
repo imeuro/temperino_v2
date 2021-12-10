@@ -1,5 +1,5 @@
 <?php
-
+$mqtt_data = [];
 $client = new Mosquitto\Client();
 //$client->onConnect('connect');
 $client->onDisconnect('disconnect');
@@ -32,11 +32,13 @@ function unsubscribe() {
 }
 
 function message($message) {
-    printf("Got a message on topic %s with payload:\n%s\n", $message->topic, $message->payload);
+    //printf("Got a message on topic %s with payload:\n%s\n", $message->topic, $message->payload);
+    $mqtt_data[$message->topic] = $message->payload;
 }
 
 function disconnect() {
     echo "Disconnected cleanly\n";
+    print_r($mqtt_data);
 }
 
 function logger() {
