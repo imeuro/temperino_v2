@@ -30,12 +30,12 @@ $client->loopForever();
 
 
 
-$client = new Mosquitto\Client('temperino_thermo');
-$client->onConnect(function($code, $message) use ($client) {
-    $client->subscribe('brtt6/thermo', 1);
+$client2 = new Mosquitto\Client('temperino_thermo');
+$client2->onConnect(function($code, $message) use ($client2) {
+    $client2->subscribe('brtt6/thermo', 1);
 });
 
-$client->onMessage(function($message) {
+$client2->onMessage(function($message) {
     /* Display the message's topic and payload */
     echo $message->topic, "\n", $message->payload, "\n\n";
     $mqtt_thermo = json_decode($message->payload, true);
@@ -45,10 +45,10 @@ $client->onMessage(function($message) {
 </div>
 
 <?php
-    $client->exitLoop();
+    $client2->exitLoop();
 });
 /* Connect, supplying the host and port. */
-$client->connect('meuro.dev', 1883);
+$client2->connect('meuro.dev', 1883);
 /* Enter the event loop */
-$client->loopForever();
+$client2->loopForever();
 
