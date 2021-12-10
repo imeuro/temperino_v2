@@ -13,10 +13,12 @@ $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
     ->setUseTls(false)
     ->setKeepAliveInterval(10);
 $mqtt->connect($connectionSettings, true);
+/*
 $mqtt->subscribe('brtt6/temp', function ($topic, $message) {
     echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
     $mqtt_data['temp'] = $message;
 },1);
+*/
 $mqtt->subscribe('brtt6/thermo', function ($topic, $message) {
     echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
     $mqtt_data['thermo'] = $message;
@@ -68,3 +70,4 @@ jQuery(document).ready(function() {
 	});
 });
 </script>
+
