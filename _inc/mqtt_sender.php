@@ -1,6 +1,7 @@
 <?php
-$set_prog = $_GET['program'].date("");
-if ($set_prog) {
+$dataset = json_decode($_GET['thermo']);
+print_r($dataset);
+if ($dataset) {
 
 	$client = new Mosquitto\Client();
 	$client->onConnect('connect');
@@ -10,7 +11,7 @@ if ($set_prog) {
 
 	while (true) {
 		$client->loop();
-		$mid = $client->publish('brtt6/thermo', $set_prog, 1, true);
+		$mid = $client->publish('brtt6/test', $dataset, 1, true);
 		echo "Sent message ID: {$mid}\n";
 		$client->loop();
 
