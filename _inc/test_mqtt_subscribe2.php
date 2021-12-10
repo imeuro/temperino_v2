@@ -1,7 +1,7 @@
 <h2>Status: inside</h2>
 <time id="in_time_val"></time>
 <?php
-$client = new Mosquitto\Client('temperino');
+$client = new Mosquitto\Client('temperino_temp');
 $client->onConnect(function($code, $message) use ($client) {
     $client->subscribe('brtt6/temp', 1);
 });
@@ -24,6 +24,7 @@ $client->onMessage(function($message) {
     $client->exitLoop();
 });
 
+$client = new Mosquitto\Client('temperino_thermo');
 $client->onConnect(function($code, $message) use ($client) {
     $client->subscribe('brtt6/thermo', 1);
 });
