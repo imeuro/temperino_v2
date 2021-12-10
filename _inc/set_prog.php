@@ -1,9 +1,31 @@
 <h2>Program mode:</h2>
-<time id="manual_time_val"></time>
+<?php
+$mqtt_temp = [];
+$client = new Mosquitto\Client();
+$client->onDisconnect('disconnect');
+$client->onMessage('message');
+$client->connect("meuro.dev", 1883, 5);
+$client->subscribe('brtt6/thermo', 1);
+
+for ($i = 0; $i < 5; $i++) {
+    $client->loop();
+}
+
+$client->unsubscribe('brtt6/thermo');
+
+for ($i = 0; $i < 5; $i++) {
+    $client->loop();
+}
+
+function message($message) {
+    //printf("Got a message on topic %s with payload:\n%s\n", $message->topic, $message->payload);
+    $mqtt_thermo = json_decode($message->payload, true);
+?>
+<time id="manual_time_val"><?php echo $mqtt_thermo['last_mod'] ?></time>
 
 <div class="modebuttons-container program-mode small">
-	<button class="heat-mode" data-program="T3">T3 / MANUAL</button>
-	<button class="heat-mode" data-program="T2">T2 / MANUAL</button>
+	<button class="heat-mode" data-program="T2">T2 (°C)</button>
+	<button class="heat-mode" data-program="T1">T1 (°C)</button>
 	<button class="heat-mode on" data-program="AUTO">AUTO</button>
 </div>
 
@@ -11,17 +33,17 @@
 <h2>Manual mode:</h2>
 <div class="manual-mode small">
 	<button class="manual-adjust manual-adjust-down">-</button>
-	<h3 id="manual-mode-value" class="manual-adjust-value">18</h3>
+	<h3 id="manual-mode-value" class="manual-adjust-value"><?php echo $mqtt_thermo['set_temp'] ?></h3>
 	<button class="manual-adjust manual-adjust-up">+</button>
 	<div class="modebuttons-container program-mode small">
 		<button id="manual-mode-set" class="heat-mode heat-mode-manual-set" data-program="MANUAL">SET TEMP</button>
 	</div>
 </div>
 
-<h2>Summer mode:</h2>
+<!--h2>Summer mode:</h2>
 <div class="modebuttons-container summer-mode small">
 	<button class="heat-mode heat-mode-off" data-program="OFF">OFF</button>
-</div>
+</div-->
 <script>
 jQuery(document).ready(function() {
 
@@ -103,3 +125,15 @@ jQuery(document).ready(function() {
 
 });
 </script>
+<?php
+}
+
+function disconnect() {
+    //echo "Disconnected cleanly\n";
+    print_r($mqtt_temp);
+}
+
+function logger() {
+    var_dump(func_get_args());
+}
+?>
