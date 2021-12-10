@@ -6,7 +6,7 @@ $client = new Mosquitto\Client('MyClient');
 /* Set the callback fired when the connection is complete */
 $client->onConnect(function($code, $message) use ($client) {
     /* Subscribe to the broker's $SYS namespace, which shows debugging info */
-    $client->subscribe('brtt6/thermo', 0);
+    $client->subscribe('brtt6/thermo', 1);
 });
 
 /* Set the callback fired when we receive a message */

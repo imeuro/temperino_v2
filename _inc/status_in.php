@@ -27,8 +27,8 @@ $mqtt->subscribe('brtt6/thermo', function ($topic, $message) {
 print_r($mqtt_data);
 
 
-$mqtt->loop();
-//$mqtt->interrupt();
+//$mqtt->loop();
+$mqtt->interrupt();
 $mqtt->disconnect();
 
 print_r($mqtt_data);
