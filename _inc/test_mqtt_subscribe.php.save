@@ -1,4 +1,5 @@
 <?php
+
 require __DIR__ . '/vendor/autoload.php';
 $server   = "meuro.dev";
 $port     = 1883;
@@ -11,9 +12,27 @@ $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
     ->setUseTls(false)
     ->setKeepAliveInterval(10);
 $mqtt->connect($connectionSettings, true);
+
+// $client->registerLoopEventHandler(function function (MqttClient $mqtt) {
+//     // After 10 seconds, we quit the loop.
+//     sleep(10);
+//     $client->interrupt();
+// });
+
 $mqtt->subscribe('brtt6/temp', function ($topic, $message) {
-    echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
+    //echo $message;
+    $mqtt_data_temp = $message;
+    //print_r($mqtt_data_temp);
 },1);
-$mqtt->loop();
-//$mqtt->interrupt();
+$mqtt->subscribe('brtt6/thermo', function ($topic, $message) use($mqtt) {
+    //echo $message;
+    $mqtt_data_thermo = $message;
+    $mqtt->interrupt();
+},1);
+
+print_r($mqtt_data_temp);
+
+$mqtt->loop(true);
 $mqtt->disconnect();
+
+print_r($mqtt_data_thermo);
