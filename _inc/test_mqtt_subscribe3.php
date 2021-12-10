@@ -1,12 +1,12 @@
 <?php
 
 $client = new Mosquitto\Client();
-$client->onConnect('connect');
+//$client->onConnect('connect');
 $client->onDisconnect('disconnect');
-$client->onSubscribe('subscribe');
+//$client->onSubscribe('subscribe');
 $client->onMessage('message');
 $client->connect("meuro.dev", 1883, 5);
-$client->onLog('logger');
+//$client->onLog('logger');
 $client->subscribe('brtt6/+', 1);
 
 for ($i = 0; $i < 10; $i++) {
