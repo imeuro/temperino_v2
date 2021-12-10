@@ -23,6 +23,12 @@ $client->onMessage(function($message) {
 <?php
     $client->exitLoop();
 });
+/* Connect, supplying the host and port. */
+$client->connect('meuro.dev', 1883);
+/* Enter the event loop */
+$client->loopForever();
+
+
 
 $client = new Mosquitto\Client('temperino_thermo');
 $client->onConnect(function($code, $message) use ($client) {
@@ -41,11 +47,8 @@ $client->onMessage(function($message) {
 <?php
     $client->exitLoop();
 });
-
 /* Connect, supplying the host and port. */
-/* If not supplied, they default to localhost and port 1883 */
 $client->connect('meuro.dev', 1883);
-
 /* Enter the event loop */
 $client->loopForever();
 
