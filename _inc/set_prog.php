@@ -26,7 +26,7 @@ function message($message) {
 <div class="modebuttons-container program-mode small">
 	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'T2' ? 'on' : ''; ?>" data-program="T2">T2 (20°C)</button>
 	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'T1' ? 'on' : ''; ?>" data-program="T1">T1 (17°C)</button>
-	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'auto' ? 'on' : ''; ?>" data-program="AUTO">AUTO</button>
+	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'AUTO' ? 'on' : ''; ?>" data-program="AUTO">AUTO</button>
 </div>
 
 
