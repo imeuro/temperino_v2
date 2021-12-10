@@ -1,28 +1,44 @@
 <?php
 
-$c = new Mosquitto\Client();
-$c->onConnect(function($code, $message) {
-    echo "I'm connected\n";
-});
+$client = new Mosquitto\Client();
+$client->onConnect('connect');
+$client->onDisconnect('disconnect');
+$client->onSubscribe('subscribe');
+$client->onMessage('message');
+$client->connect("meuro.dev", 1883, 5);
+$client->onLog('logger');
+$client->subscribe('brtt6/+', 1);
 
-$c->connect('meuro.dev', 1883, 60);
-$c->subscribe('brtt6/+', 1);
-$c->onMessage(function($m) {
-    var_dump($m);
-});
-
-$socket = $c->getSocket();
-
-$base = new EventBase();
-$ev = new Event($base, $socket, Event::READ | Event::PERSIST, 'cb', $base);
-
-function cb($fd, $what, $arg) {
-    global $c;
-    echo "Triggered\n";
-    var_dump(func_get_args());
-    $c->loop();
+for ($i = 0; $i < 10; $i++) {
+    $client->loop();
 }
 
-$ev->add();
-$base->dispatch();
+$client->unsubscribe('brtt6/+');
 
+for ($i = 0; $i < 10; $i++) {
+    $client->loop();
+}
+
+function connect($r, $message) {
+    echo "I got code {$r} and message {$message}\n";
+}
+
+function subscribe() {
+    echo "Subscribed to a topic\n";
+}
+
+function unsubscribe() {
+    echo "Unsubscribed from a topic\n";
+}
+
+function message($message) {
+    printf("Got a message on topic %s with payload:\n%s\n", $message->topic, $message->payload);
+}
+
+function disconnect() {
+    echo "Disconnected cleanly\n";
+}
+
+function logger() {
+    var_dump(func_get_args());
+}
