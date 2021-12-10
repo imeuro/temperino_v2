@@ -30,6 +30,7 @@ $mqtt->loop();
 $mqtt->disconnect();
 
 print_r($mqtt_data);
+die();
 ?>
 
 
