@@ -1,4 +1,6 @@
 <?php
+$mqtt_data[] = '';
+
 require __DIR__ . '/vendor/autoload.php';
 $server   = "meuro.dev";
 $port     = 1883;
@@ -13,7 +15,18 @@ $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
 $mqtt->connect($connectionSettings, true);
 $mqtt->subscribe('brtt6/temp', function ($topic, $message) {
     echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
+    $mqtt_data['temp'] = $message;
 },1);
+$mqtt->subscribe('brtt6/thermo', function ($topic, $message) {
+    echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
+    $mqtt_data['thermo'] = $message;
+},1);
+
+print_r($mqtt_data);
+
+
 $mqtt->loop();
-$mqtt->interrupt();
+//$mqtt->interrupt();
 $mqtt->disconnect();
+
+print_r($mqtt_data);s
