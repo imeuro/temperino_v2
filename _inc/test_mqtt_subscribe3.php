@@ -18,8 +18,9 @@ for ($i = 0; $i < 5; $i++) {
 
 function message($message) {
     //printf("Got a message on topic %s with payload:\n%s\n", $message->topic, $message->payload);
-    $mqtt_temp = $message->payload;
+    $mqtt_temp = json_decode($message->payload, true);
 ?>
+    <time id="in_time_val"></time>
     <div class="gauge-container temp-gauge">
         <canvas width="270" height="250" id="in_TEMPERATURE" class="gauge"></canvas>
         <span id="in_temp_val" data-type="Temperature" data-scale="°C"><?php echo $mqtt_temp['cur_temp'] ?></span>
