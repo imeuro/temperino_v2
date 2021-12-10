@@ -47,15 +47,6 @@ function message($message) {
 <script>
 jQuery(document).ready(function() {
 
-	// read current status and set it on UI:
-	jQuery.getJSON('https://nas.imeuro.io/temperino_v2/data/readings.json', function(readings) {
-    //console.log(readings.program);
-		jQuery('button[data-program]').removeClass('on');
-		jQuery('button[data-program="'+readings.program.mode+'"]').addClass('on');
-		jQuery('#manual-mode-value').text(readings.program.temp);
-		jQuery('#manual_time_val').text(readings.program.timestamp);
-  });
-
 	jQuery('.heat-mode').on( "click", function() {
 		var whatprog = jQuery(this).attr("data-program");
 		var whattemp = 8;
@@ -70,8 +61,8 @@ jQuery(document).ready(function() {
 		jQuery.ajax({
 		  // method: "POST",
 		  method: "GET",
-		  url: "https://nas.imeuro.io/temperino_v2/data/savedata.php",
-		  data: { program: { mode: whatprog, temp: whattemp } }
+		  url: "./mqtt_sender.php",
+		  data: { program: { set_prog: whatprog, set_temp: whattemp } }
 		}).done(function( msg ) {
 			printNotice('Program '+whatprog+' set.');
 		}).fail(function( msg ) {
