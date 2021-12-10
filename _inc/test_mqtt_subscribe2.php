@@ -15,6 +15,7 @@ $client->onMessage(function($message) {
     /* Display the message's topic and payload */
     echo $message->topic, "\n", $message->payload, "\n\n";
     $mqtt_data[$message->topic] = json_decode($message->payload, true);
+    print_r($mqtt_data);
     $client->exitLoop();
 });
 
@@ -25,3 +26,5 @@ $client->connect('meuro.dev', 1883);
 /* Enter the event loop */
 $client->loopForever();
 
+echo 'OUTSIDE:';
+print_r($mqtt_data);
