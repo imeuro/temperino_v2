@@ -61,7 +61,7 @@ jQuery(document).ready(function() {
 		jQuery.ajax({
 		  // method: "POST",
 		  method: "GET",
-		  url: "./mqtt_sender.php",
+		  url: "./_inc/mqtt_sender.php",
 		  data: { program: { set_prog: whatprog, set_temp: whattemp } }
 		}).done(function( msg ) {
 			printNotice('Program '+whatprog+' set.');
