@@ -13,20 +13,20 @@ $connectionSettings = (new \PhpMqtt\Client\ConnectionSettings)
     ->setUseTls(false)
     ->setKeepAliveInterval(10);
 $mqtt->connect($connectionSettings, true);
+
 $mqtt->subscribe('brtt6/temp', function ($topic, $message) {
     echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
     $mqtt_data['temp'] = $message;
 },1);
-$mqtt->subscribe('brtt6/thermo', function ($topic, $message) {
+$mqtt->subscribe('brtt6/thermo', function ($topic, $message) use($mqtt) {
     echo sprintf("Received message on topic [%s]: %s\n", $topic, $message);
     $mqtt_data['thermo'] = $message;
+    $mqtt->interrupt();
 },1);
 
 print_r($mqtt_data);
 
-
-$mqtt->loop();
-//$mqtt->interrupt();
+$mqtt->loop(true);
 $mqtt->disconnect();
 
-print_r($mqtt_data);s
+print_r($mqtt_data);
