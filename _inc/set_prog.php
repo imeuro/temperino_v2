@@ -24,9 +24,9 @@ function message($message) {
 <time id="manual_time_val"><?php echo $mqtt_thermo['last_mod'] ?></time>
 
 <div class="modebuttons-container program-mode small">
-	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'T2' ? 'on' : ''; ?>" data-program="T2">T2 (20°C)</button>
-	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'T1' ? 'on' : ''; ?>" data-program="T1">T1 (17°C)</button>
-	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'AUTO' ? 'on' : ''; ?>" data-program="AUTO">AUTO</button>
+	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'T2' ? 'on' : ''; ?>" data-program="T2">T2 (20.5°C)</button>
+	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'T1' ? 'on' : ''; ?>" data-program="T1">T1 (17.5°C)</button>
+	<button class="heat-mode <?php echo $mqtt_thermo['set_prog'] == 'AUTO' ? 'on' : ''; ?>" data-program="AUTO">AUTO (>5°C)</button>
 </div>
 
 
