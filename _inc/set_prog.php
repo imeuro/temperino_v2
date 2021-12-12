@@ -120,6 +120,5 @@ jQuery(document).ready(function() {
 
 function disconnect() {
     //echo "Disconnected cleanly\n";
-    print_r($mqtt_temp);
 }
 ?>
