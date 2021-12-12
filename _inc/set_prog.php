@@ -50,7 +50,7 @@ jQuery(document).ready(function() {
 	jQuery('.heat-mode').on( "click", function() {
 		var whatprog = jQuery(this).attr("data-program");
 		var whattemp = 5;
-		if (whatprog == 'MANUAL') {
+		if (whatprog == 'MAN') {
 			whattemp = jQuery('#manual-mode-value').text();
 		} else if (whatprog == 'T2') {
 			whattemp = 20.5;
