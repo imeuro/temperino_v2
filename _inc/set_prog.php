@@ -36,7 +36,7 @@ function message($message) {
 	<h3 id="manual-mode-value" class="manual-adjust-value"><?php echo $mqtt_thermo['set_temp'] ?></h3>
 	<button class="manual-adjust manual-adjust-up">+</button>
 	<div class="modebuttons-container program-mode small">
-		<button id="manual-mode-set" class="heat-mode heat-mode-manual-set <?php echo $mqtt_thermo['set_prog'] == 'MAN' ? 'on' : ''; ?>" data-program="MANUAL">SET TEMP</button>
+		<button id="manual-mode-set" class="heat-mode heat-mode-manual-set <?php echo $mqtt_thermo['set_prog'] == 'MAN' ? 'on' : ''; ?>" data-program="MAN">SET TEMP</button>
 	</div>
 </div>
 
@@ -49,12 +49,12 @@ jQuery(document).ready(function() {
 
 	jQuery('.heat-mode').on( "click", function() {
 		var whatprog = jQuery(this).attr("data-program");
-		var whattemp = 8;
+		var whattemp = 5;
 		if (whatprog == 'MANUAL') {
 			whattemp = jQuery('#manual-mode-value').text();
-		} else if (whatprog == 'T3') {
-			whattemp = 20.5;
 		} else if (whatprog == 'T2') {
+			whattemp = 20.5;
+		} else if (whatprog == 'T1') {
 			whattemp = 17.5;
 		}
 
@@ -121,9 +121,5 @@ jQuery(document).ready(function() {
 function disconnect() {
     //echo "Disconnected cleanly\n";
     print_r($mqtt_temp);
-}
-
-function logger() {
-    var_dump(func_get_args());
 }
 ?>
