@@ -277,7 +277,7 @@ main.menu-open {
 
 .swiper-slide {
 	min-height: calc(100vh - 60px - 30px);
-	padding: 25px 25px 40px 25px;
+	padding: 25px 25px 25px 25px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
@@ -568,6 +568,7 @@ ul.sys_info_table li:nth-child(odd) {
 #reboot_confirm.hidden {
 	opacity: 0;
 	top: 100vh;
+  display: none;
 }
 main #reboot_confirm button {
   width: 33%;
