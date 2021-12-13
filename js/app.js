@@ -1,19 +1,16 @@
-
-
-
-  var app = {
-    isLoading: true,
-    //daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-		spinner: document.querySelector('.loader'),
-		navmenu: document.querySelector('.main-menu'),
-		container: document.querySelector('.main'),
-		contentloaded: {
-			slide1:	false,
-			slide2:	false,
-			slide3:	false,
-			slide4:	false,
-		}
-  };
+var app = {
+  isLoading: true,
+  //daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+	spinner: document.querySelector('.loader'),
+	navmenu: document.querySelector('.main-menu'),
+	container: document.querySelector('.main'),
+	contentloaded: {
+		slide1:	false,
+		slide2:	false,
+		slide3:	false,
+		slide4:	false,
+	}
+};
 
 (function() {
   'use strict';
@@ -174,39 +171,40 @@
 
 
 
-
-  app.appSwiper = new Swiper ('.swiper-Temperino', {
-    direction: 'horizontal',
-		speed: 400,
-    spaceBetween: 50,
-    loop: false,
-		autoHeight : true,
-		fadeEffect: {
-    	crossFade: true
-  	},
-		pagination: {
-	    el: '.swiper-pagination',
-	    type: 'bullets',
-	  },
-		hashNavigation: {
-	    replaceState: false,
-			watchState: true,
-	  },
-		on: {
-			init: function () {
-	      /* do something */
-				app.selContentToLoad();
-	    },
-			slideChangeTransitionEnd: function () {
-				this.updateAutoHeight(1000);
-				app.selContentToLoad();
-	    	app.navigateMenu();
-				if (jQuery('nav').hasClass('menu-open') == true) {
-				 jQuery('nav, main').toggleClass('menu-open');
-				}
-	    },
-		}
-  });
+	window.onload = function() {
+	  app.appSwiper = new Swiper ('.swiper-Temperino', {
+	    direction: 'horizontal',
+			speed: 400,
+	    spaceBetween: 50,
+	    loop: false,
+			autoHeight : true,
+			fadeEffect: {
+	    	crossFade: true
+	  	},
+			pagination: {
+		    el: '.swiper-pagination',
+		    type: 'bullets',
+		  },
+			hashNavigation: {
+		    replaceState: false,
+				watchState: true,
+		  },
+			on: {
+				init: function () {
+		      /* do something */
+					app.selContentToLoad();
+		    },
+				slideChangeTransitionEnd: function () {
+					this.updateAutoHeight(1000);
+					app.selContentToLoad();
+		    	app.navigateMenu();
+					if (jQuery('nav').hasClass('menu-open') == true) {
+					 jQuery('nav, main').toggleClass('menu-open');
+					}
+		    },
+			}
+	  });
+	}
 
 
 
