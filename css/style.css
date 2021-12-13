@@ -257,9 +257,10 @@ nav li a.current:before {
 main {
 	left: 0;
 	position: absolute;
-  height: 100vh;
+  height: auto;
   width: 100vw;
   padding-top: 60px;
+  box-sizing: border-box;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
