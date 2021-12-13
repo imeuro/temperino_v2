@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var dataCacheName = 'TemperinoData-v2';
-var cacheName = 'Temperino-v2_13122021';
+var dataCacheName = 'TemperinoData-v2_20211213';
+var cacheName = 'Temperino-v2_20211213';
 var filesToCache = [
   '/temperino_v2/',
   '/temperino_v2/index.php',
