@@ -13,7 +13,7 @@
 // limitations under the License.
 
 var dataCacheName = 'TemperinoData-v2';
-var cacheName = 'Temperino-v2';
+var cacheName = 'Temperino-v2_13122021';
 var filesToCache = [
   '/temperino_v2/',
   '/temperino_v2/index.php',

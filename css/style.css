@@ -440,7 +440,7 @@ button.manual-adjust {
 	text-align: center;
 	width: 120px;
 	height: 120px;
-	line-height: 110px;
+	line-height: 120px;
 	padding: 0;
 	margin: 10px 0px;
 	border: 2px solid #fff;
@@ -596,7 +596,7 @@ div#notice {
   opacity: 1;
   transition: opacity 500ms ease-in-out;
   font-size: 14px;
-  line-height: 30px;
+  line-height: 33px;
   font-weight: 700;
 }
 div#notice.hidden { opacity: 0; bottom: -50px; }
